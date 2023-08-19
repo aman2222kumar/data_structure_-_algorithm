@@ -1,0 +1,106 @@
+/******************************************************************************
+
+                            Online Java Compiler.
+                Code, Compile, Run and Debug java program online.
+Write your code in this editor and press "Run" button to execute it.
+
+*******************************************************************************/
+
+public class Main
+{
+	public static void main(String[] args) {
+	  int[] arr={1,5,3,45,34,78,89};
+	   int low=0;
+	   int high=arr.length-1;
+	   divide(arr,low,high);
+	   for(int i:arr){
+	       System.out.print(i+" ");
+	   }
+	  
+	}
+	
+	public static void conquer(int[] arr,int low,int mid,int high){
+	    int[] merger=new int[high-low+1];
+	    int idx1=low;
+	    int idx2=mid+1;
+	    int count=0;
+	    
+	    while(idx1<=mid && idx2<=high){
+	        if(arr[idx1]>arr[idx2]){
+	            merger[count]=arr[idx2];
+	            count++;
+	            idx2++;
+	        }
+	        else{
+	            merger[count]=arr[idx1];
+	            count++;
+	            idx1++;
+	        }
+	    }
+	    
+	    while(idx1<=mid){
+	        merger[count]=arr[idx1];
+	        count++;
+	        idx1++;
+	    }
+	    while(idx2<=high){
+	        merger[count]=arr[idx2];
+	        count++;
+	        idx2++;
+	    }
+	    
+	    for(int i=0,j=low;i<merger.length;i++){
+	        arr[j]=merger[i];
+	        j++;
+	    }
+	    
+	}
+	
+	public static void divide(int[] arr,int low,int high){
+	    if(low>=high){
+	        return;
+	    }
+	    int mid=low+(high-low)/2;
+	    divide(arr,low,mid);
+	    divide(arr,mid+1,high);
+	    conquer(arr,low,mid,high);
+	}
+}
+
+
+/* Insertion Sort */
+
+/******************************************************************************
+
+                            Online Java Compiler.
+                Code, Compile, Run and Debug java program online.
+Write your code in this editor and press "Run" button to execute it.
+
+*******************************************************************************/
+
+public class Main
+{
+	public static void main(String[] args) {
+		int[] arr={1,4,3,45,4,56,7,89};
+		InsertionSort(arr);
+		for(int i:arr){
+		    System.out.print(i+" ");
+		}
+		
+	}
+	
+	public static void InsertionSort(int[] arr){
+	    
+	    for(int i=1;i<arr.length;i++){
+	        int j=i;
+	        int temp=arr[i];
+	        while(j>0 && arr[j-1]>temp){
+	            arr[j]=arr[j-1];
+	            j=j-1;
+	        }
+	        arr[j]=temp;
+	        
+	    }
+	    
+	}
+}
